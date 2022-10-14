@@ -1,5 +1,5 @@
 {
-	"name": "Checkmk",
+	"name": "$CONTAINER_NAME",
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": {
