@@ -32,7 +32,7 @@ CMK_PY3_DEV_IMAGE=cmk-python3-dev
 DOCKERFILE_CMK_PY3_DEV=Dockerfile_cmk_py3_dev
 
 # load Checkmk versions
-. $ROOTDIR/devcontainer_versions.env
+. $ROOTDIR/devcontainer_img_versions.env
 
 function main() {
     build_images
