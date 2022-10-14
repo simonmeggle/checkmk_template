@@ -61,7 +61,7 @@ function sync_files {
 
     # Bash aliases
     # TODO 
-    # create_symlink .devcontainer/.site_bash_aliases $OMD_ROOT/.bash_aliases
+    create_symlink .devcontainer/.site_bash_aliases $OMD_ROOT/.bash_aliases
 
     # TODO: Custom stuff
     # # RF test suites 
