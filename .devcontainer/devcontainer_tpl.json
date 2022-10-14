@@ -4,7 +4,7 @@
 		"dockerfile": "Dockerfile",
 		"args": {
 			// gets replaced by envsubst, Ref LeP3qq
-			"VARIANT": "$VERSION",
+			"VARIANT": "$VERSION"
 		},
 	},
 	"containerEnv": {

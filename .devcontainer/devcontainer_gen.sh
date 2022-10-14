@@ -2,7 +2,21 @@
 # SPDX-FileCopyrightText: © 2022 ELABIT GmbH <mail@elabit.de>
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# This file is used to generate the devcontainer.json file. It is called from the project 
+# root directory. It sets the container name to the project name and Checkmk version to
+# ARG1 = Checkmk version, e.g. 2.1.0p11
+
+export VERSION=$1
+
 function main() {
+    # if version is unset, exit with error
+    if [ -z "$VERSION" ]; then
+        echo "No cmk version (arg1) specified. Choose one of the following:"
+        PWD=$(folder_of $0)
+        cat $PWD/devcontainer_versions.env
+        exit 1
+    fi
+
     PROJECT_DIR="$(dirname $(folder_of $0))"
     PROJECT=${PROJECT_DIR##*/} 
     export CONTAINER_NAME=${PROJECT}-devc
