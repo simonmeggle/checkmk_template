@@ -30,7 +30,7 @@ bash -c "$CMD"
 
 echo $CMD
 
-
+echo "Creating default directories..."
 for DIR in "agent_based" "agents" "bakery" "checkman" "checks" "checkman" "images" "web"; do
   mkdir -p $(pwd)/$DIR
 done
