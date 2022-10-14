@@ -19,10 +19,6 @@
 # $CMK_PY3_DEV_IMAGE                                                2.0.0p5        1d96bebf47a6   27 seconds ago   2.18GB
 # $CMK_PY3_DEV_IMAGE                                                1.6.0p25       599e8beeb9c7   10 minutes ago   1.93GB
 
-
-
-
-
 REGISTRY="registry.checkmk.com"
 ROOTDIR=$(dirname "$0")
 
