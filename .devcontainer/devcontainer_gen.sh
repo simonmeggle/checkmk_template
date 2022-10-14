@@ -7,6 +7,8 @@
 # ARG1 = Checkmk version, e.g. 2.1.0p11
 
 export VERSION=$1
+DEVC_FILE=".devcontainer/devcontainer.json"
+DEVC_TPL_FILE=".devcontainer/devcontainer_tpl.json"
 
 function main() {
     # if version is unset, exit with error
@@ -23,14 +25,14 @@ function main() {
 
     echo "+ Generating CMK devcontainer file ..."
     # Ref LeP3qq
-    envsubst < .devcontainer/devcontainer_tpl.json > .devcontainer/devcontainer.json
+    envsubst < $DEVC_TPL_FILE > $DEVC_FILE
     # devcontainer.json contains a VS Code Variable ${containerWorkspaceFolder}, which would also 
     # be processed by envsubst. To avoid this, the template files contain ###{containerWorkspaceFolder}.
     # The three hashes are replaced with $ _after_ envsusbt has done its work. 
     # Mac-only sed... 
-    sed -i "" 's/###/$/' .devcontainer/devcontainer.json
+    sed -i "" 's/###/$/' $DEVC_FILE
 
-    echo ">>> Preparation for Checkmk version $VERSION finished."
+    echo ">>> $DEVC_FILE for Checkmk version $VERSION created. Container name: $CONTAINER_NAME"
     echo "You can now start the devcontainer in VS Code with 'Remote-Containers: Rebuild Container'."
 }
 
