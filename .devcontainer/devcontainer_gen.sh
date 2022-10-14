@@ -32,8 +32,9 @@ function main() {
     # Mac-only sed... 
     sed -i "" 's/###/$/' $DEVC_FILE
 
-    echo ">>> $DEVC_FILE for Checkmk version $VERSION created. Container name: $CONTAINER_NAME"
-    echo "You can now start the devcontainer in VS Code with 'Remote-Containers: Rebuild Container'."
+    echo ">>> $DEVC_FILE for Checkmk version $VERSION created."
+    echo "Container will start with name: '$CONTAINER_NAME'"
+    echo "VS Code: 'Remote-Containers: Rebuild Container'."
 }
 
 
