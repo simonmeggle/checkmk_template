@@ -50,28 +50,18 @@ function create_symlink {
 
 
 function sync_files {
-    # BAKERY V2
-    create_symlink bakery $L_SHARE_CMK/agents/bakery
-    rm -rf $L_SHARE_CMK/agents/bakery/__pycache__
+    for DIR in "agents" "bakery" "checkman" "checks" "checkman" "images" "web"; do
+        create_symlink $DIR $L_SHARE_CMK/$DIR
+    done
 
-    # CHECK PLUGIN V2
-    create_symlink checks $L_LIB_CMK_BASE/plugins/agent_based
-    rm -rf $L_LIB_CMK_BASE/plugins/agent_based/__pycache__ 
+    # agent_based
+    create_symlink agent_based $L_LIB_CMK_BASE/plugins/agent_based
+    rm -rf $L_LIB_CMK_BASE/plugins/agent_based/__pycache__
+
 
     # Bash aliases
-    create_symlink .devcontainer/.site_bash_aliases $OMD_ROOT/.bash_aliases
-    
-    # Agent plugins
-    create_symlink agents_plugins $L_SHARE_CMK/agents/plugins
-
-    # checkman
-    create_symlink checkman $L_SHARE_CMK/checkman
-
-    # Images & icons
-    create_symlink images $L_SHARE_CMK/web/htdocs/images
-
-    # Metrics, WATO
-    create_symlink web_plugins $L_SHARE_CMK/web/plugins   
+    # TODO 
+    # create_symlink .devcontainer/.site_bash_aliases $OMD_ROOT/.bash_aliases
 
     # TODO: Custom stuff
     # # RF test suites 
