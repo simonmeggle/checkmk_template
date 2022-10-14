@@ -2,3 +2,8 @@ flake8
 pytest
 pytest-cov
 requests-mock
+robotframework
+pyyaml
+mergedeep
+python-dateutil
+ipdb

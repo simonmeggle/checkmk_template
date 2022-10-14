@@ -1,18 +1,21 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.155.1/containers/ubuntu/.devcontainer/base.Dockerfile
 
-# [Choice] CheckMK version: 1.6.0-latest, 2.0.0-latest, 2.1.0-latest
-ARG VARIANT="2.1.0-latest"
-FROM checkmk/check-mk-raw:${VARIANT}
+ARG VARIANT
+# Build the dev images with .devcontainer/build-devcontainer.sh !
+# See https://stackoverflow.com/a/69798220 to run the image on Apple M1
+FROM --platform=linux/amd64 robotmk-cmk-python3:${VARIANT}
 
+ENV CMK_PASSWORD="cmk"
+
+# Creates the OMD site, executes post-start hook and halts before site start
+COPY docker-entrypoint.d /docker-entrypoint.d
 RUN /docker-entrypoint.sh /bin/true
 
-# [Optional] Uncomment this section to install additional OS packages.
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends nodejs gcc
+# make the agent dir writeable from the CMK site (to link RF example tests) 
+RUN chgrp -R cmk /usr/lib/check_mk_agent && chmod g+w /usr/lib/check_mk_agent
 
-ADD requirements.txt /tmp/requirements.txt
-RUN PATH="/omd/sites/cmk/bin:${PATH}" \
-    OMD_ROOT="/omd/sites/cmk" \
-    /omd/sites/cmk/bin/pip3 install -r /tmp/requirements.txt
+COPY .root_bash_aliases /root/.bash_aliases
+RUN echo ". /root/.bash_aliases" >> /root/.bashrc
+COPY .tmux.conf /root/.tmux.conf
 
 ENTRYPOINT ["/bin/bash"]
