@@ -47,7 +47,6 @@ function main() {
     
     echo ">>> $DEVC_FILE for Checkmk version $VERSION created."
     echo "Container will start with name: '$CONTAINER_NAME'"
-    echo "VS Code: 'Remote-Containers: Rebuild Container'."
 }
 
 
