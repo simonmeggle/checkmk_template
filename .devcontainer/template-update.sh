@@ -30,6 +30,11 @@ bash -c "$CMD"
 
 echo $CMD
 
+
+for DIR in "agent_based" "agents" "bakery" "checkman" "checks" "checkman" "images" "web"; do
+  mkdir -p $(pwd)/$DIR
+done
+
 PROJECT_DIR="$(dirname $(folder_of $0))"
 PROJECT=${PROJECT_DIR##*/} 
 echo "export PROJECT_NAME=$PROJECT" > $PROJECT_DIR/project.env

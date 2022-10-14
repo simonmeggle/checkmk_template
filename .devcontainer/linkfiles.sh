@@ -13,8 +13,6 @@ L_LIB_CMK_BASE="local/lib/check_mk/base"
 
 function main {
     sync_files
-    # TODO: common no more needed (was for V1)
-    sync_common
     echo "linkfiles.sh finished."
     echo "===================="
 }
@@ -50,9 +48,18 @@ function create_symlink {
     tree $LINKNAME
 }
 
-function sync_common {
+
+function sync_files {
+    # BAKERY V2
+    create_symlink bakery $L_SHARE_CMK/agents/bakery
+    rm -rf $L_SHARE_CMK/agents/bakery/__pycache__
+
+    # CHECK PLUGIN V2
+    create_symlink checks $L_LIB_CMK_BASE/plugins/agent_based
+    rm -rf $L_LIB_CMK_BASE/plugins/agent_based/__pycache__ 
+
     # Bash aliases
-    create_symlink scripts/.site_bash_aliases $OMD_ROOT/.bash_aliases
+    create_symlink .devcontainer/.site_bash_aliases $OMD_ROOT/.bash_aliases
     
     # Agent plugins
     create_symlink agents_plugins $L_SHARE_CMK/agents/plugins
@@ -72,17 +79,7 @@ function sync_common {
     # Folder where agent output can be sourced with rule
     # "Datasource Programs > Individual program call instead of agent access"
     # (folder gets created in postCreateCommand.sh)
-    #create_symlink agent_output var/check_mk/agent_output       
-}
-
-function sync_files {
-    # BAKERY V2
-    create_symlink bakery/v2 $L_SHARE_CMK/agents/bakery
-    rm -rf $L_SHARE_CMK/agents/bakery/__pycache__
-
-    # CHECK PLUGIN V2
-    create_symlink checks/v2 $L_LIB_CMK_BASE/plugins/agent_based
-    rm -rf $L_LIB_CMK_BASE/plugins/agent_based/__pycache__ 
+    #create_symlink agent_output var/check_mk/agent_output         
 }
 
 main
