@@ -8,6 +8,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
+
+function folder_of() {
+  DIR="${1%/*}"
+  (cd "$DIR" && echo "$(pwd -P)")
+}
+
 git -C $TEMPDIR clone https://github.com/simonmeggle/checkmk_template.git
 
 CMD="rsync --archive --cvs-exclude --no-owner --no-group --no-times --verbose"

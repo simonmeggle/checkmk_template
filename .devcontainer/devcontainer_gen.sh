@@ -15,6 +15,10 @@ DEVC_FILE=".devcontainer/devcontainer.json"
 DEVC_LOCAL_FILE=".devcontainer/devcontainer_local.json"
 DEVC_TPL_FILE=".devcontainer/devcontainer_tpl.json"
 
+# project.env contains some generic useful variables
+source .project.env
+CONTAINER_NAME=${PROJECT_NAME}-devc
+
 function main() {
     # if version is unset, exit with error
     if [ -z "$VERSION" ]; then
@@ -23,10 +27,7 @@ function main() {
         cat $PWD/devcontainer_versions.env
         exit 1
     fi
-
-    PROJECT_DIR="$(dirname $(folder_of $0))"
-    PROJECT=${PROJECT_DIR##*/} 
-    export CONTAINER_NAME=${PROJECT}-devc
+    
 
     echo "+ Generating CMK devcontainer file ..."
     # Ref LeP3qq
