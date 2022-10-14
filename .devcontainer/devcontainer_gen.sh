@@ -38,7 +38,7 @@ function main() {
     # Mac-only sed... 
     sed -i "" 's/###/$/' $DEVC_FILE.tmp
     if [ -f $DEVC_LOCAL_FILE ]; then
-        echo "+ Merging local devcontainer file ..."
+        echo "+ Merging local devcontainer file for project $PROJECT_NAME ..."
         jq -s '.[0] * .[1]' $PWD/$DEVC_FILE.tmp $PWD/$DEVC_LOCAL_FILE > $PWD/$DEVC_FILE
         rm $PWD/$DEVC_FILE.tmp
     else
