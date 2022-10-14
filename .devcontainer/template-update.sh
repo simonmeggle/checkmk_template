@@ -8,7 +8,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-git -C $TEMPDIR clone https://github.com/jiuka/checkmk_template.git
+git -C $TEMPDIR clone https://github.com/simonmeggle/checkmk_template.git
 
 CMD="rsync --archive --cvs-exclude --no-owner --no-group --no-times --verbose"
 if [ -e ".devcontainer/template-sync.conf" ]; then
