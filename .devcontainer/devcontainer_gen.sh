@@ -16,8 +16,8 @@ DEVC_LOCAL_FILE=".devcontainer/devcontainer_local.json"
 DEVC_TPL_FILE=".devcontainer/devcontainer_tpl.json"
 
 # project.env contains some generic useful variables
-source .project.env
-CONTAINER_NAME=${PROJECT_NAME}-devc
+source project.env
+export CONTAINER_NAME=${PROJECT_NAME}-devc
 
 function main() {
     # if version is unset, exit with error
