@@ -5,9 +5,11 @@
     'files': {
         'agent_based': [],
         'agents': [],
+        'bakery': [],
         'checkman': [],
         'checks': [],
         'doc': [],
+        'images': [],
         'inventory': [],
         'notifications': [],
         'pnp-templates': [],

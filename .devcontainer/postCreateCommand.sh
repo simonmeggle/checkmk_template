@@ -43,6 +43,9 @@ echo "▹ Enabling the Web API..."
 sed -i '/disable_web_api/d' $OMD_ROOT/etc/check_mk/multisite.d/wato/global.mk
 echo "disable_web_api = False" >> $OMD_ROOT/etc/check_mk/multisite.d/wato/global.mk
 
+# Install project specific python modules on container startup.
+# For large dependencies, better use the Dockerfile which builds an individual image. 
+# Ref 6TEtDq
 echo "▹ Installing Python modules for $PROJECT_NAME... "
 pip3 install -r $WORKSPACE/requirements.txt
 

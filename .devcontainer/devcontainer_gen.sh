@@ -55,5 +55,4 @@ function folder_of() {
   (cd "$DIR" && echo "$(pwd -P)")
 }
 
-
 main $@

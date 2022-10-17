@@ -50,7 +50,7 @@ function create_symlink {
 
 
 function sync_files {
-    for DIR in "agents" "bakery" "checkman" "checks" "checkman" "images" "web"; do
+    for DIR in "agents" "bakery" "checkman" "checks" "images" "checkman" "images" "web"; do
         create_symlink $DIR $L_SHARE_CMK/$DIR
     done
 
