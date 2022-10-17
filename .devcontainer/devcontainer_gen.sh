@@ -24,7 +24,7 @@ function main() {
     if [ -z "$VERSION" ]; then
         echo "No cmk version (arg1) specified. Choose one of the following:"
         PWD=$(folder_of $0)
-        cat $PWD/devcontainer_versions.env
+        cat $PWD/devcontainer_img_versions.env
         exit 1
     fi
     
