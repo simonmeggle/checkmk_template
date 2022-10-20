@@ -11,15 +11,17 @@
 # As soon as the first installer has been baken by the bakery, the agent will 
 # anyhow have a version from the CMK server.  
 
+echo "⚙ Post-create script: $0"
 echo "▹ Installing the Checkmk agent..."
 DEB=$(realpath $(dirname $0))/cmk_agent.deb
 dpkg -i $DEB
 
-echo "▹ Starting the Checkmk agent..."
 
 # make the agent dir writeable from the CMK site (to link RF example tests) 
+echo "▹ Fixing file permissions... "
 mkdir -p /usr/lib/check_mk_agent
 chgrp -R cmk /usr/lib/check_mk_agent
 chmod g+w /usr/lib/check_mk_agent 
 
+echo "▹ Starting the Checkmk agent..."
 nohup xinetd 2>&1

@@ -38,8 +38,8 @@ RUN pip3 install -r /tmp/requirements.txt
 ENV CMK_PASSWORD="cmk"
 
 # bash aliases for root user
-COPY .root_bash_aliases /root/.bash_aliases
+COPY .devcontainer/.root_bash_aliases /root/.bash_aliases
 RUN echo ". /root/.bash_aliases" >> /root/.bashrc
 
 # tmux configuration inside container
-COPY .tmux.conf /root/.tmux.conf
+COPY .devcontainer/.tmux.conf /root/.tmux.conf
