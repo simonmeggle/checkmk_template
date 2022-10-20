@@ -1,5 +1,5 @@
 ARG VARIANT
-FROM registry.checkmk.com/enterprise/check-mk-free:$VARIANT
+FROM checkmk/check-mk-free:$VARIANT
 
 # This Dockerfile is based on the official Checkmk Dockerfile (Free Edition)
 # and adds some additional features for development: 
@@ -36,11 +36,6 @@ RUN pip3 install -r /tmp/requirements.txt
 
 # default passwort for user checkmkadmin
 ENV CMK_PASSWORD="cmk"
-
-# make the agent dir writeable from the CMK site (to link RF example tests) 
-RUN mkdir -p /usr/lib/check_mk_agent \
-    && chgrp -R cmk /usr/lib/check_mk_agent
-    && chmod g+w /usr/lib/check_mk_agent 
 
 # bash aliases for root user
 COPY .root_bash_aliases /root/.bash_aliases

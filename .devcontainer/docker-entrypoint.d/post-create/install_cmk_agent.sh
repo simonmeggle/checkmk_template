@@ -17,5 +17,9 @@ dpkg -i $DEB
 
 echo "▹ Starting the Checkmk agent..."
 
-# TODO: Why does xinetd not start reliably? (#207)
+# make the agent dir writeable from the CMK site (to link RF example tests) 
+mkdir -p /usr/lib/check_mk_agent
+chgrp -R cmk /usr/lib/check_mk_agent
+chmod g+w /usr/lib/check_mk_agent 
+
 nohup xinetd 2>&1
