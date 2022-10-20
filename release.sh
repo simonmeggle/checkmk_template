@@ -12,7 +12,7 @@ function main (){
     fi 
 
     if [ "x$TAG" == "x" ] || [ ${TAG:0:1} == "v" ]; then 
-        echo "ERROR: Param 2 must be a version name without 'v', e.g. 1.0.1.  Exiting."
+        echo "ERROR: Param 2 must be the version WITHOUT a leading 'v', e.g. 1.0.1.  Exiting."
         exit 1
     fi 
     if [ ! -x $(which chag) ]; then 
