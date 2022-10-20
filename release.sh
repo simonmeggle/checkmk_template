@@ -84,8 +84,8 @@ function do_asserts() {
 
 function assert_changelog() {
     # Check if CHANGELOG exists
-    if [ ! -f xCHANGELOG.md ]; then 
-        echo "ERROR: CHANGELOG.md not found. Exiting."
+    if [ ! -f CHANGELOG.md ]; then 
+        echo "ERROR: No CHANGELOG.md found. Exiting."
         exit 1
     fi
 }
