@@ -1,17 +1,17 @@
-name: MKP-Release
+name: MKP-Build-Release
 
-# on:
-#   push:
-#     tags:
-#       - "v*"
 on:
+  push:
+    tags:
+      - "v*"
+      - "!v*[a-z]"
   workflow_dispatch:
 
 jobs:
   # ////////////////////////////////////////////////////////////////////////
 
   build-release:
-    name: Create MKP
+    name: Build MKP
     runs-on: ubuntu-latest
     container:
       image: checkmk/check-mk-raw:2.1.0-latest
@@ -38,7 +38,6 @@ jobs:
       - name: Upload MKP artifact
         uses: actions/upload-artifact@v3
         with:
-          # name: ${{ steps.cmkpkg.outputs.artifactname }}
           name: ${{ steps.cmkpkg.outputs.pkgfile }}
           path: ${{ steps.cmkpkg.outputs.pkgfile }}
 
