@@ -11,7 +11,7 @@ function main (){
         exit 1
     fi 
 
-    if [ "x$TAG" == "x" ]; then 
+    if [ "x$TAG" == "x" ] || [ ${TAG:0:1} == "v" ]; then 
         echo "ERROR: Param 2 must be a version name without 'v', e.g. 1.0.1.  Exiting."
         exit 1
     fi 
