@@ -32,10 +32,7 @@ function main (){
 
 
 function release() {
-    assert_gh_login
-    assert_tag_unique $VTAG
-    assert_branch "develop"
-    assert_notdirty
+    do_asserts
 
     header "Setting pre-release tag $preVTAG ..."
     git tag $preVTAG
@@ -75,6 +72,22 @@ function unrelease() {
     #header "Resetting the 'develop' branch to the tag $preVTAG ..."
     #git reset --hard $preVTAG
     #git tag -d $preVTAG 
+}
+
+function do_asserts() {
+    assert_gh_login
+    assert_tag_unique $VTAG
+    assert_branch "develop"
+    assert_notdirty
+    assert_changelog
+}
+
+function assert_changelog() {
+    # Check if CHANGELOG exists
+    if [ ! -f xCHANGELOG.md ]; then 
+        echo "ERROR: CHANGELOG.md not found. Exiting."
+        exit 1
+    fi
 }
 
 function assert_branch {
